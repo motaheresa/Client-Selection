@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 45%;
+    max-width: 1200px;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow:
+        0 0 0 2px white,
+        0.3em 0.3em 1em rgba(130, 130, 130, 0.6);
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.client-selection {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    background-color: white;
+}
+
+.client-card {
+    flex: 1 1 calc(50% - 20px); /* Adjusts cards to take 50% width minus the gap */
+    max-width: 280px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #EC783D;;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.button:hover {
+    background-color: #aca2a2;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+    .popup {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .client-selection {
+        flex-direction: column;
+        align-items: center;
+    }
+    .client-card {
+        flex: 1 1 100%; /* Full width for each card */
+        max-width: 100%;
+        width: 40%;
+    }
+    .popup {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .icon-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+    .icon-container .icon {
+        height: 130px;
+    }
+    .container {
+        padding: 15px;
+    }
+    .client-card {
+        padding: 15px;
+        width: 100%;
+    }
+    .button {
+        padding: 8px 15px;
+    }
+    .popup {
+        width: 90%;
+    }
+}
+
+

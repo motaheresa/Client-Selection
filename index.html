@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Selection</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Popup design */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+
+        .icon-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            gap: 12px;
+        }
+
+        .icon {
+            width: 180px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .bg-hover {
+            width: 0;
+            height: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        .icon:hover .bg-hover {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hover-icons {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            gap: 10px;
+            z-index: 2;
+            flex-direction: row;
+        }
+
+        .icon:hover .hover-icons {
+            display: flex;
+        }
+
+        .hover-icons div {
+            width: 30px;
+            height: 30px;
+            background-color: #EC783D;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 50%;
+            justify-content: center;
+            font-size: 13px;
+            transition: transform 0.3s ease;
+        }
+
+        .hover-icons div:hover {
+            transform: scale(1.2);
+        }
+
+        .icon p {
+            margin: 10px 0 0;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .select-lang-link {
+            text-decoration: none;
+            color: white;
+        }
+
+        .close-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="Picture1.png" alt="Your Image" class="image">
+        <div class="client-selection">
+            <div class="new-client client-card">
+                <h2>New Client?</h2>
+                <p>Click here to</p>
+                <a href="#" class="button" onclick="openPopup()">Open an Account</a>
+            </div>
+            <div class="existing-client client-card">
+                <h2>Existing Client?</h2>
+                <p>Click here to</p>
+                <a href="https://go.etihadcapital.com/" class="button">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="popupOverlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+        <h3>Select an Option</h3>
+        <div class="icon-container">
+            <!-- Option 1 -->
+            <div class="icon">
+                <div class="bg-hover"></div>
+                <img src="./external-digital-marketing-digital-creatype-two-colour-colourcreatype-6.png" alt="Icon 1">
+                <p>Trading Contract</p>
+                <div class="hover-icons">
+                    <div><a class="select-lang-link" href="">EN</a></div>
+                    <div><a class="select-lang-link" href="">AR</a></div>
+                </div>
+            </div>
+
+            <!-- Option 2 -->
+            <div class="icon">
+                <div class="bg-hover"></div>
+                <img src="./stocks-growth.png" alt="Icon 2">
+                <p>Portfolio Management Contract</p>
+                <div class="hover-icons">
+                    <div><a class="select-lang-link" href="">EN</a></div>
+                    <div><a class="select-lang-link" href="">AR</a></div>
+                </div>
+            </div>
+
+            <!-- Option 3 -->
+            <div class="icon">
+                <div class="bg-hover"></div>
+                <img src="./stocks.png" alt="Icon 3">
+                <p>Both Contracts</p>
+                <div class="hover-icons">
+                    <div><a class="select-lang-link" href="">EN</a></div>
+                    <div><a class="select-lang-link" href="">AR</a></div>
+                </div>
+            </div>
+        </div>
+        <button class="close-button" onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        // Open popup
+        function openPopup() {
+            document.getElementById("popup").style.display = "block";
+            document.getElementById("popupOverlay").style.display = "block";
+        }
+
+        // Close popup
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+            document.getElementById("popupOverlay").style.display = "none";
+        }
+
+        // Handle mobile click behavior for hover-icons
+        document.addEventListener("DOMContentLoaded", () => {
+            const icons = document.querySelectorAll(".icon");
+
+            icons.forEach((icon) => {
+                icon.addEventListener("click", (e) => {
+                    e.stopPropagation(); // Prevent click from bubbling
+                    const hoverIcons = icon.querySelector(".hover-icons");
+                    const isVisible = hoverIcons.style.display === "flex";
+                    document.querySelectorAll(".hover-icons").forEach((other) => {
+                        other.style.display = "none"; // Close other hover-icons
+                    });
+                    hoverIcons.style.display = isVisible ? "none" : "flex";
+                });
+            });
+
+            // Close hover-icons when clicking outside
+            document.addEventListener("click", () => {
+                document.querySelectorAll(".hover-icons").forEach((hoverIcons) => {
+                    hoverIcons.style.display = "none";
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
